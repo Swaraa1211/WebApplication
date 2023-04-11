@@ -1,0 +1,30 @@
+﻿@page
+@model BasicWebApplication.Pages.Books.IndexBookModel
+@{
+}
+<br>
+<h1>Books List</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>BookName</th>
+            <th>Author</th>
+            <th>Publication</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var book in Model.BookList)
+        {
+            <tr>
+                <td>@book.Id</td>
+                <td>@book.BookName</td>
+                <td>@book.Author</td>
+                <td>@book.Publication</td>
+                <td>@book.Price</td>
+            </tr>
+        }
+    </tbody>  
+</table>
+<!--<p>@IndexBookModel.str</p>-->
