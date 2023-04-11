@@ -6,6 +6,8 @@ namespace BasicWebApplication.Pages.Books
 {
     public class IndexBookModel : PageModel
     {
+
+        Books book = new Books();
         public List<Books> BookList = new List<Books>();
         //public static string str = "static";
 
@@ -22,7 +24,6 @@ namespace BasicWebApplication.Pages.Books
                 var reader  = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    Books book = new Books();
                     book.Id = reader.GetString(0);
                     book.BookName = reader.GetString(1);
                     book.Author = reader.GetString(2);
@@ -44,8 +45,22 @@ namespace BasicWebApplication.Pages.Books
 
         public string BookName { get; set; }
 
+        public string Category { get;set; }
+
         public string Author { get; set; }
+
         public string Publication { get; set; }
+
+        public DateTime Published_Date { get; set; }
+
+        public int Book_Edition { get; set; }
+
         public double Price { get; set; }
+
+        public string Rack_Num { get; set; }
+
+        public DateTime Date_Arrival { get; set; }
+
+        public string Supplier_Id { get; set; }
     }
 }

@@ -16,8 +16,16 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\VS Code\BasicWebApplication
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/VS Code/BasicWebApplication/Pages/Books/CreateBook.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQm9va3NcQ3JlYXRlQm9vay5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/VS Code/BasicWebApplication/Pages/Books/IndexBook.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQm9va3NcSW5kZXhCb29rLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/VS Code/BasicWebApplication/Pages/Books/UpdateBook.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQm9va3NcVXBkYXRlQm9vay5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/VS Code/BasicWebApplication/Pages/Error.cshtml]
