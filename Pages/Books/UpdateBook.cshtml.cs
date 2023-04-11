@@ -19,13 +19,13 @@ namespace BasicWebApplication.Pages.Books
             //var cultureInfo = new CultureInfo("en-US");
             try
             {
-                string BookId = Request.Query["Id"];//same as form name
+                //string BookId = Request.Query["Id"];//same as form name
                 SqlConnection sqlConnection = new SqlConnection("Data Source=5CG7324TYL;Initial Catalog = LMS_DB; Encrypt=False; Integrated Security=True;");
                 sqlConnection.Open();
 
                 SqlCommand command = new SqlCommand();
                 command.CommandText = $"SELECT BOOK_CODE,BOOK_TITLE,AUTHOR,CATEGORY,PUBLICATION," +
-                    $"PUBLIC_DATE,BOOK_EDITION,PRICE FROM LMS_BOOK_DETAILS WHEREBOOK_CODE = '{BookId}'";
+                    $"PUBLIC_DATE,BOOK_EDITION,PRICE FROM LMS_BOOK_DETAILS WHERE BOOK_CODE = '{BookId}'";
 
                 //var reader = command.ExecuteReader();
                 SqlDataReader reader = command.ExecuteReader();

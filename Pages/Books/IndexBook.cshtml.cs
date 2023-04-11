@@ -24,13 +24,14 @@ namespace BasicWebApplication.Pages.Books
                 var reader  = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    book.Id = reader.GetString(0);
-                    book.BookName = reader.GetString(1);
-                    book.Author = reader.GetString(2);
+                    book.Id = (string)reader["BOOK_CODE"];
+                    book.BookName = (string)reader["BOOK_TITLE"];
+                    book.Author = (string)reader["AUTHOR"];
                     book.Publication = (string)reader["PUBLICATION"];
                     book.Price = (double)reader["PRICE"];
 
                     BookList.Add(book);
+                    Console.WriteLine(BookList);
                 }
             }catch (Exception ex)
             {

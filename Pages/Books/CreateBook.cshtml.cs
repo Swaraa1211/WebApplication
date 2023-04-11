@@ -18,7 +18,7 @@ namespace BasicWebApplication.Pages.Books
             SqlConnection sqlConnection = new SqlConnection("Data Source=5CG7324TYL;Initial Catalog = LMS_DB; Encrypt=False; Integrated Security=True;");
             sqlConnection.Open();
 
-            book.Id = Request.Form["id"];
+            book.Id = Request.Form["Id"];
             book.BookName = Request.Form["BookName"];
             //book.BookName = "C#";
             book.Category = Request.Form["Category"];
