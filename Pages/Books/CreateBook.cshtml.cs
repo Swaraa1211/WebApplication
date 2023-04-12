@@ -1,12 +1,14 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
+using System.Data;
+using static System.Reflection.Metadata.BlobBuilder;
 
 namespace BasicWebApplication.Pages.Books
 {
     public class CreateBookModel : PageModel
     {
-        Books book = new Books();
+        //Books book = new Books();
         public string errorMessage = "";
         public string successMessage = "";
         public void OnGet()
@@ -14,50 +16,58 @@ namespace BasicWebApplication.Pages.Books
         }
         public void OnPost()
         {
-                
+            Books book = new Books();
+
             SqlConnection sqlConnection = new SqlConnection("Data Source=5CG7324TYL;Initial Catalog = LMS_DB; Encrypt=False; Integrated Security=True;");
             sqlConnection.Open();
 
-            book.Id = Request.Form["Id"];
-            book.BookName = Request.Form["BookName"];
-            //book.BookName = "C#";
-            book.Category = Request.Form["Category"];
-            book.Author = Request.Form["Author"];
-            book.Publication = Request.Form["Publication"];
-            book.Published_Date = Convert.ToDateTime(Request.Form["Published_Date"]);
-            book.Book_Edition = Convert.ToInt32(Request.Form["Book_Edition"]);
-            book.Price = Convert.ToInt32(Request.Form["Price"]);
+            //book.BookCode = Request.Form["BookCode"];
+            //book.BookTitle = Request.Form["BookTitle"];
+            //book.Category = Request.Form["Category"];
+            //book.Author = Request.Form["Author"];
+            //book.Publication = Request.Form["Publication"];
+            //book.Published_Date = Convert.ToDateTime(Request.Form["Published_Date"]);
+            //book.BookEdition = Convert.ToInt32(Request.Form["BookEdition"]);
+            //book.Price = Convert.ToDouble(Request.Form["Price"]);
 
-            if(book.Price > 100)
-            {
-                errorMessage = "The price can't be more than 100";
-                return;
-            }
+            // book.RackNum = "A1";
+            // book.DateArrival = Convert.ToDateTime("2023-04-01");
+            // book.SupplierId = "S03";
 
-             book.Rack_Num = "A1";
-             book.Date_Arrival = Convert.ToDateTime("2023-04-01");
-             book.Supplier_Id = "S03";
+            //SqlCommand cmd = sqlConnection.CreateCommand();
+            //try
+            //{
+            //    successMessage = "";
+            //    errorMessage = "";
+            //    cmd.CommandText = $"INSERT INTO LMS_BOOK_DETAILS(BOOK_CODE,BOOK_TITLE,AUTHOR,CATEGORY,PUBLICATION," +
+            //                $"PUBLISH_DATE,BOOK_EDITION,PRICE,RACK_NUM,DATE_ARRIVAL,SUPPLIER_ID)  VALUES" +
+            //                       $"('{book.BookCode}','{book.BookTitle}','{book.Category}'," +
+            //                       $"'{book.Author}','{book.Publication}','{book.Published_Date}'," +
+            //                       $"{book.BookEdition},{book.Price},'{book.RackNum}'," +
+            //                       $"'{book.DateArrival}','{book.SupplierId}');"; 
+            //    cmd.ExecuteNonQuery();
+            //    successMessage = "Book has been added successfully";
+            // }
+            //catch (Exception ex)
+            //{
+            //        Console.WriteLine("Error: "+ ex.Message);
+            //        errorMessage = ex.Message;
+            //}
+
+            string BookCode = Request.Form["BookCode"];
+            string BookTitle = Request.Form["BookTitle"];
             try
             {
-                successMessage = "";
-                errorMessage = "";
-                string query = $"INSERT INTO LMS_BOOK_DETAILS VALUES" +
-                                   $"('{book.Id}','{book.BookName}','{book.Category}'," +
-                                   $"'{book.Author}','{book.Publication}','{book.Published_Date}'," +
-                                   $"{book.Book_Edition},{book.Price},'{book.Rack_Num}'," +
-                                   $"'{book.Date_Arrival}','{book.Supplier_Id}');"; 
-                    //SqlCommand command = new SqlCommand(query, sqlConnection);
-                Console.WriteLine(query);
-                SqlCommand cmd = new SqlCommand(query, sqlConnection);
-                cmd.ExecuteNonQuery();
-                successMessage = "Book has been added successfully";
-             }
-            catch (Exception ex)
-            {
-                    Console.WriteLine("Error: "+ ex.Message);
-                    errorMessage = ex.Message;
+                SqlCommand command = new SqlCommand("INSERT_BOOK", sqlConnection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@bookCode", SqlDbType.VarChar).Value = BookCode;
+                command.Parameters.AddWithValue("@bookTitle", SqlDbType.VarChar).Value = BookTitle;
+                command.ExecuteNonQuery();
             }
-            
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
 
         }
     }

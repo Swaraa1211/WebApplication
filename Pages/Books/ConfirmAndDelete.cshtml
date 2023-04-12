@@ -1,0 +1,37 @@
+﻿@page
+@model BasicWebApplication.Pages.Books.ConfirmAndDeleteModel
+@{
+}
+
+
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>BookName</th>
+            <th>Author</th>
+            <th>Publication</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+            <tr>
+                <td>@Model.books.BookCode</td>
+                <td>@Model.books.BookTitle</td>
+                <td>@Model.books.Author</td>
+                <td>@Model.books.Publication</td>
+                <td>@Model.books.Price</td>
+            </tr>
+    </tbody>
+</table>
+
+<div>
+    <h5>Are you sure you want to delete @Model.BookCode ?</h5>
+    <form method="post">
+
+        <button type="submit" class="btn btn-primary">Yes</button>
+    </form>
+    <a href="/Books/IndexBook"<button class="btn btn-danger">No</button></a>
+</div>

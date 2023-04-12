@@ -22,7 +22,7 @@ namespace BasicWebApplication
 
             app.UseAuthorization();
 
-            app.MapRazorPages();
+            app.MapRazorPages();//to work without mvc
 
             app.Run();
         }

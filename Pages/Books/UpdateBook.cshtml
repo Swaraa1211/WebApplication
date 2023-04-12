@@ -21,11 +21,11 @@
 }
 
 <form method="post">
-    <input type = "hidden" name="Id" value="@Model.books.Id"/>
+    <input type = "hidden" name="BookCode" value="@Model.books.BookCode"/>
     <div class="row mb-3">
         <label class="col-sm-2 col-form-label">BOOK TITLE</label>
         <div class="col-sm-4">
-            <input type="text" class=" form-control" name="BookName" value="@Model.books.BookName" required />
+            <input type="text" class=" form-control" name="BookTitle" value="@Model.books.BookTitle" required />
         </div>
     </div>
     <div class="row mb-3">
@@ -55,7 +55,7 @@
     <div class="row mb-3">
         <label class="col-sm-2 col-form-label">Book Edition</label>
         <div class="col-sm-4">
-            <input type="text" class=" form-control" name="Book_Edition" value="@Model.books.Book_Edition" required />
+            <input type="text" class=" form-control" name="Book_Edition" value="@Model.books.BookEdition" required />
         </div>
     </div>
     <div class="row mb-3">

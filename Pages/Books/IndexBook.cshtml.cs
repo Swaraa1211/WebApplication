@@ -7,7 +7,7 @@ namespace BasicWebApplication.Pages.Books
     public class IndexBookModel : PageModel
     {
 
-        Books book = new Books();
+        //Books book = new Books();
         public List<Books> BookList = new List<Books>();
         //public static string str = "static";
 
@@ -21,17 +21,18 @@ namespace BasicWebApplication.Pages.Books
                 string query = "SELECT BOOK_CODE, BOOK_TITLE, AUTHOR, PUBLICATION, PRICE FROM LMS_BOOK_DETAILS";
                 SqlCommand command = new SqlCommand(query, sqlConnection) ;
 
-                var reader  = command.ExecuteReader();
+                SqlDataReader reader  = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    book.Id = (string)reader["BOOK_CODE"];
-                    book.BookName = (string)reader["BOOK_TITLE"];
+                    Books book = new Books();
+                    book.BookCode = (string)reader["BOOK_CODE"];
+                    book.BookTitle = (string)reader["BOOK_TITLE"];
                     book.Author = (string)reader["AUTHOR"];
                     book.Publication = (string)reader["PUBLICATION"];
                     book.Price = (double)reader["PRICE"];
 
                     BookList.Add(book);
-                    Console.WriteLine(BookList);
+                    //Console.WriteLine(BookList);
                 }
             }catch (Exception ex)
             {
@@ -42,9 +43,9 @@ namespace BasicWebApplication.Pages.Books
     }
     public class Books
     {
-        public string Id { get; set; }
+        public string BookCode { get; set; }
 
-        public string BookName { get; set; }
+        public string BookTitle { get; set; }
 
         public string Category { get;set; }
 
@@ -54,14 +55,14 @@ namespace BasicWebApplication.Pages.Books
 
         public DateTime Published_Date { get; set; }
 
-        public int Book_Edition { get; set; }
+        public int BookEdition { get; set; }
 
         public double Price { get; set; }
 
-        public string Rack_Num { get; set; }
+        public string RackNum { get; set; }
 
-        public DateTime Date_Arrival { get; set; }
+        public DateTime DateArrival { get; set; }
 
-        public string Supplier_Id { get; set; }
+        public string SupplierId { get; set; }
     }
 }
